@@ -1,0 +1,506 @@
+/**
+ * mod_vertical_megamenu — CSS
+ * Joomla 5 | Bootstrap 5 | White theme | Green accent #2f7a2e
+ */
+
+/* =========================================================
+   CUSTOM PROPERTIES
+   ========================================================= */
+.vertical-megamenu {
+    --vmm-menu-width: 260px;
+    --vmm-mega-width: 750px;
+
+    /* Sidebar */
+    --vmm-bg:           #ffffff;
+    --vmm-bg-hover:     #f0f7f0;
+    --vmm-text:         #1a1a1a;
+    --vmm-text-hover:   #2f7a2e;
+    --vmm-accent:       #2f7a2e;
+    --vmm-border:       #e4e4e4;
+    --vmm-separator:    #aaaaaa;
+
+    /* Mega panel */
+    --vmm-mega-bg:         #ffffff;
+    --vmm-mega-text:       #1a1a1a;
+    --vmm-mega-text-hover: #2f7a2e;
+    --vmm-mega-border:     #ebebeb;
+    --vmm-mega-hover-bg:   #f0f7f0;
+
+    /* Badge */
+    --vmm-badge-bg:   #2f7a2e;
+    --vmm-badge-text: #ffffff;
+
+    /* Level 3 flyout */
+    --vmm-l3-bg:         #ffffff;
+    --vmm-l3-border:     #e0e0e0;
+    --vmm-l3-shadow:     0 4px 20px rgba(0,0,0,0.10);
+    --vmm-l3-text:       #333333;
+    --vmm-l3-text-hover: #2f7a2e;
+
+    /* Geometry */
+    --vmm-item-h: 44px;
+    --vmm-radius: 6px;
+
+    /* Animation */
+    --vmm-speed: 180ms;
+    --vmm-ease:  cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Typography */
+    --vmm-font-size:     0.925rem;
+    --vmm-sub-font-size: 0.875rem;
+    --vmm-l3-font-size:  0.825rem;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+.vertical-megamenu *,
+.vertical-megamenu *::before,
+.vertical-megamenu *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================================
+   WRAPPER
+   ========================================================= */
+.vertical-megamenu {
+    position: relative;
+    width: var(--vmm-menu-width);
+    font-size: var(--vmm-font-size);
+    background: var(--vmm-bg);
+    border: 1px solid var(--vmm-border);
+    border-radius: var(--vmm-radius);
+    overflow: visible;
+    user-select: none;
+    z-index: 100;
+}
+
+/* =========================================================
+   MAIN LIST
+   ========================================================= */
+.vmm-list {
+    list-style: none;
+    width: 100%;
+    padding: 4px 0;
+}
+
+/* =========================================================
+   LIST ITEM
+   ========================================================= */
+.vmm-item {
+    position: static;
+}
+
+.vmm-item.separator > .vmm-link {
+    pointer-events: none;
+    cursor: default;
+    color: var(--vmm-separator);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    height: auto;
+    padding: 12px 16px 4px;
+    border-left-color: transparent !important;
+    background: transparent !important;
+}
+
+/* =========================================================
+   LEVEL 1 LINK
+   icon | title(flex:1) | badge | arrow
+   ========================================================= */
+.vmm-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: var(--vmm-item-h);
+    padding: 0 12px 0 16px;
+    color: var(--vmm-text);
+    text-decoration: none;
+    line-height: 1;
+    border-left: 3px solid transparent;
+    transition:
+        background        var(--vmm-speed) var(--vmm-ease),
+        color             var(--vmm-speed) var(--vmm-ease),
+        border-left-color var(--vmm-speed) var(--vmm-ease);
+}
+
+.vmm-link:hover,
+.vmm-item:hover     > .vmm-link,
+.vmm-item.mega-open > .vmm-link {
+    background: var(--vmm-bg-hover);
+    color: var(--vmm-text-hover);
+    border-left-color: var(--vmm-accent);
+}
+
+.vmm-item.active > .vmm-link,
+.vmm-link.current {
+    color: var(--vmm-accent);
+    border-left-color: var(--vmm-accent);
+    font-weight: 600;
+}
+
+.vmm-title {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================================
+   ICON & IMAGE
+   ========================================================= */
+.vmm-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--vmm-accent);
+}
+.vmm-icon svg { width: 100%; height: 100%; }
+
+.vmm-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   ARROW — always at far right
+   ========================================================= */
+.vmm-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-left: auto;
+    color: #bbbbbb;
+    transition:
+        color     var(--vmm-speed) var(--vmm-ease),
+        transform var(--vmm-speed) var(--vmm-ease);
+}
+
+.vmm-item:hover     > .vmm-link .vmm-arrow,
+.vmm-item.mega-open > .vmm-link .vmm-arrow {
+    color: var(--vmm-accent);
+    transform: translateX(2px);
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+.vmm-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--vmm-badge-bg);
+    color: var(--vmm-badge-text);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    flex-shrink: 0;
+}
+.vmm-badge--sm { padding: 1px 6px; font-size: 0.63rem; }
+.vmm-badge--xs { padding: 1px 5px; font-size: 0.58rem; }
+
+/* =========================================================
+   MEGA PANEL
+
+   KEY RULES:
+   - position: absolute, left = sidebar width
+   - top is set by JS (aligned to hovered item, shifted up if overflow)
+   - width: auto — fits content, no empty space
+   - NO min-height — panel is exactly as tall as its content
+   - A transparent pseudo-element bridges the gap between
+     sidebar and panel so mouse travel doesn't lose hover
+   ========================================================= */
+.vmm-mega-panel {
+    display: none;
+    position: absolute;
+    /* top: set dynamically by JS */
+    left: calc(var(--vmm-menu-width) - 1px); /* -1px to overlap border */
+    width: auto;
+    min-width: 220px;
+    max-width: var(--vmm-mega-width);
+    height: auto;           /* fit content exactly */
+    background: var(--vmm-mega-bg);
+    border: 1px solid var(--vmm-mega-border);
+    border-radius: 0 var(--vmm-radius) var(--vmm-radius) var(--vmm-radius);
+    box-shadow: 6px 4px 20px rgba(0,0,0,0.08);
+    z-index: 200;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+        opacity   var(--vmm-speed) var(--vmm-ease),
+        transform var(--vmm-speed) var(--vmm-ease);
+    pointer-events: none;
+}
+
+/* Transparent bridge: fills the gap between sidebar right edge and panel */
+/* Prevents mouseLeave firing when cursor crosses the 1px border gap */
+.vmm-mega-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -12px;    /* extends 12px to the left, into the sidebar gap */
+    width: 12px;
+    height: 100%;
+    background: transparent;
+}
+
+.vmm-item.mega-open > .vmm-mega-panel {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* =========================================================
+   MEGA INNER
+   ========================================================= */
+.vmm-mega-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 0;
+}
+
+/* =========================================================
+   MEGA COLUMNS — sized to content
+   ========================================================= */
+.vmm-mega-column {
+    flex: 0 0 auto;
+    min-width: 150px;
+    padding-right: 24px;
+}
+.vmm-mega-column:last-child {
+    padding-right: 0;
+}
+.vmm-mega-column:not(:last-child) {
+    border-right: 1px solid var(--vmm-mega-border);
+    margin-right: 24px;
+}
+
+/* =========================================================
+   LEVEL 2 SUB ITEMS
+   ========================================================= */
+.vmm-sub-list { list-style: none; }
+
+.vmm-sub-item {
+    position: relative;
+    line-height: 1;
+}
+
+.vmm-sub-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 8px;
+    color: var(--vmm-mega-text);
+    text-decoration: none;
+    font-size: var(--vmm-sub-font-size);
+    border-radius: 4px;
+    white-space: nowrap;
+    transition:
+        color      var(--vmm-speed) var(--vmm-ease),
+        background var(--vmm-speed) var(--vmm-ease);
+}
+
+.vmm-sub-link:hover,
+.vmm-sub-item.active  > .vmm-sub-link,
+.vmm-sub-item.current > .vmm-sub-link {
+    color: var(--vmm-mega-text-hover);
+    background: var(--vmm-mega-hover-bg);
+}
+
+.vmm-sub-title { flex: 1 1 auto; }
+
+/* Chevron for items with level-3 children */
+.vmm-sub-item.has-l3 > .vmm-sub-link::after {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-right: 1.5px solid currentColor;
+    border-top: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: 6px;
+    opacity: 0.45;
+    flex-shrink: 0;
+    transition: opacity var(--vmm-speed) var(--vmm-ease);
+}
+.vmm-sub-item.has-l3:hover > .vmm-sub-link::after {
+    opacity: 1;
+}
+
+/* =========================================================
+   LEVEL 3 — FLYOUT RIGHT from sub-item
+   ========================================================= */
+.vmm-level3 {
+    display: none;
+    position: absolute;
+    top: -6px;
+    left: 100%;
+    min-width: 180px;
+    background: var(--vmm-l3-bg);
+    border: 1px solid var(--vmm-l3-border);
+    border-radius: var(--vmm-radius);
+    box-shadow: var(--vmm-l3-shadow);
+    z-index: 300;
+    list-style: none;
+    padding: 6px 0;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+        opacity   var(--vmm-speed) var(--vmm-ease),
+        transform var(--vmm-speed) var(--vmm-ease);
+    pointer-events: none;
+}
+
+.vmm-sub-item.has-l3:hover > .vmm-level3 {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.vmm-level3-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    color: var(--vmm-l3-text);
+    text-decoration: none;
+    font-size: var(--vmm-l3-font-size);
+    white-space: nowrap;
+    transition:
+        color      var(--vmm-speed) var(--vmm-ease),
+        background var(--vmm-speed) var(--vmm-ease);
+}
+.vmm-level3-link:hover,
+.vmm-level3-item.current > .vmm-level3-link {
+    color: var(--vmm-l3-text-hover);
+    background: var(--vmm-mega-hover-bg);
+}
+
+/* =========================================================
+   MOBILE — ACCORDION (≤ 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+    .vertical-megamenu {
+        width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .vmm-mega-panel {
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        box-shadow: none;
+        border-radius: 0;
+        border: none;
+        border-top: 1px solid var(--vmm-mega-border);
+        background: #f7faf7;
+        transform: none !important;
+        opacity: 1 !important;
+        display: none;
+        pointer-events: auto;
+    }
+    .vmm-mega-panel::before { display: none; }
+
+    .vmm-item.mega-open > .vmm-mega-panel { display: block; }
+
+    .vmm-mega-inner {
+        flex-direction: column;
+        padding: 10px 14px;
+    }
+
+    .vmm-mega-column {
+        width: 100%;
+        min-width: 0;
+        padding-right: 0;
+        border-right: none !important;
+        margin-right: 0 !important;
+        padding-bottom: 10px;
+    }
+    .vmm-mega-column:not(:last-child) {
+        border-bottom: 1px solid var(--vmm-mega-border);
+        margin-bottom: 10px;
+    }
+
+    .vmm-arrow { transform: rotate(90deg); color: #999; }
+    .vmm-item.mega-open > .vmm-link .vmm-arrow {
+        transform: rotate(-90deg);
+        color: var(--vmm-accent);
+    }
+
+    /* Level 3 static on mobile */
+    .vmm-level3 {
+        position: static !important;
+        display: none;
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--vmm-accent);
+        border-radius: 0;
+        padding: 4px 0 4px 10px;
+        margin: 2px 0 4px 8px;
+        pointer-events: auto;
+    }
+    .vmm-sub-item.has-l3.l3-open > .vmm-level3 {
+        display: block;
+    }
+    /* Disable CSS :hover trigger on mobile */
+    .vmm-sub-item.has-l3:hover > .vmm-level3 {
+        display: none;
+    }
+    .vmm-sub-item.has-l3.l3-open > .vmm-level3 {
+        display: block !important;
+    }
+}
+
+/* =========================================================
+   TABLET (769–1100px)
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .vertical-megamenu { --vmm-mega-width: 520px; }
+    .vmm-mega-inner { padding: 14px 16px; }
+}
+
+/* =========================================================
+   FOCUS / ACCESSIBILITY
+   ========================================================= */
+.vmm-link:focus-visible,
+.vmm-sub-link:focus-visible,
+.vmm-level3-link:focus-visible {
+    outline: 2px solid var(--vmm-accent);
+    outline-offset: -2px;
+    border-radius: 4px;
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+@media print {
+    .vmm-mega-panel,
+    .vmm-level3 { display: none !important; }
+}
