@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade">
+    <name>mod_vertical_megamenu</name>
+    <author>MegaMenu Developer</author>
+    <creationDate>2024-01-01</creationDate>
+    <version>1.1.0</version>
+    <description>MOD_VERTICAL_MEGAMENU_DESC</description>
+
+    <files>
+        <filename module="mod_vertical_megamenu">mod_vertical_megamenu.php</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>language</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/mod_vertical_megamenu.ini</language>
+        <language tag="en-GB">language/en-GB/mod_vertical_megamenu.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                <field
+                    name="menutype"
+                    type="sql"
+                    label="MOD_VERTICAL_MEGAMENU_MENUTYPE_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_MENUTYPE_DESC"
+                    default="mainmenu"
+                    query="SELECT a.menutype AS value, a.title AS text FROM #__menu_types AS a ORDER BY a.title ASC"
+                    key_field="value"
+                    value_field="text"
+                />
+
+                <field
+                    name="startLevel"
+                    type="number"
+                    label="MOD_VERTICAL_MEGAMENU_START_LEVEL_LABEL"
+                    default="1"
+                    min="1"
+                    max="10"
+                    step="1"
+                />
+
+                <field
+                    name="endLevel"
+                    type="number"
+                    label="MOD_VERTICAL_MEGAMENU_END_LEVEL_LABEL"
+                    default="3"
+                    min="1"
+                    max="10"
+                    step="1"
+                />
+
+                <field
+                    name="max_columns"
+                    type="list"
+                    label="MOD_VERTICAL_MEGAMENU_MAX_COLUMNS_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_MAX_COLUMNS_DESC"
+                    default="3">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </field>
+
+                <field
+                    name="menu_width"
+                    type="number"
+                    label="MOD_VERTICAL_MEGAMENU_MENU_WIDTH_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_MENU_WIDTH_DESC"
+                    default="260"
+                    min="200"
+                    max="400"
+                    step="10"
+                />
+
+                <field
+                    name="mega_width"
+                    type="number"
+                    label="MOD_VERTICAL_MEGAMENU_MEGA_WIDTH_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_MEGA_WIDTH_DESC"
+                    default="750"
+                    min="400"
+                    max="1200"
+                    step="50"
+                />
+
+                <field
+                    name="mobile_breakpoint"
+                    type="number"
+                    label="MOD_VERTICAL_MEGAMENU_MOBILE_BP_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_MOBILE_BP_DESC"
+                    default="768"
+                    min="480"
+                    max="1200"
+                    step="1"
+                />
+
+                <field
+                    name="show_icons"
+                    type="radio"
+                    label="MOD_VERTICAL_MEGAMENU_SHOW_ICONS_LABEL"
+                    default="1"
+                    class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field
+                    name="show_badges"
+                    type="radio"
+                    label="MOD_VERTICAL_MEGAMENU_SHOW_BADGES_LABEL"
+                    default="1"
+                    class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field
+                    name="trigger"
+                    type="list"
+                    label="MOD_VERTICAL_MEGAMENU_TRIGGER_LABEL"
+                    description="MOD_VERTICAL_MEGAMENU_TRIGGER_DESC"
+                    default="hover">
+                    <option value="hover">Hover</option>
+                    <option value="click">Click</option>
+                </field>
+
+            </fieldset>
+        </fields>
+    </config>
+</extension>
